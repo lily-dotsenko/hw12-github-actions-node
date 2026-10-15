@@ -40,3 +40,7 @@ test("rejects a null name", () => {
 test("rejects a numeric name", () => {
   assert.equal(isValidProduct(123, 100), false);
 });
+
+test("rejects a null price", () => {
+  assert.equal(isValidProduct("Laptop", null), false);
+});
