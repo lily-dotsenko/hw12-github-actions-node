@@ -32,3 +32,11 @@ test("rejects a missing or non-finite price", () => {
   assert.equal(isValidProduct("Laptop", NaN), false);
   assert.equal(isValidProduct("Laptop", Infinity), false);
 });
+
+test("rejects a null name", () => {
+  assert.equal(isValidProduct(null, 100), false);
+});
+
+test("rejects a numeric name", () => {
+  assert.equal(isValidProduct(123, 100), false);
+});
