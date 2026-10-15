@@ -39,7 +39,10 @@ const db = new sqlite3.Database("softserve.db", (err) => {
 app.post("/products", (req, res) => {
   const { name, price } = req.body;
   if (!isValidProduct(name, price)) {
-    res.status(400).json({ error: "Invalid data format" });
+    res.status(400).json({
+      error:
+        "Product name must be a non-empty string and price must be a finite non-negative number",
+    });
     return;
   }
 
