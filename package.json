@@ -4,8 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "build": "node --check index.js && node --check src/product-validation.js && npm pack",
+    "test": "node --test"
   },
+  "files": [
+    "index.js",
+    "src/",
+    "softserve.db",
+    ".env.example"
+  ],
   "keywords": [],
   "author": "",
   "license": "ISC",

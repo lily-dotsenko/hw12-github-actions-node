@@ -1,3 +1,4 @@
+const { isValidProduct } = require("./src/product-validation");
 const express = require("express");
 const bodyParser = require("body-parser");
 const sqlite3 = require("sqlite3").verbose();
@@ -17,7 +18,7 @@ app.use(
   cors({
     origin: `http://localhost:${CLIENT_PORT}`,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
-  })
+  }),
 );
 
 app.use(express.json());
@@ -37,7 +38,7 @@ const db = new sqlite3.Database("softserve.db", (err) => {
 // CREATE
 app.post("/products", (req, res) => {
   const { name, price } = req.body;
-  if (typeof name === undefined || price === undefined) {
+  if (!isValidProduct(name, price)) {
     res.status(400).json({ error: "Invalid data format" });
     return;
   }
